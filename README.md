@@ -152,7 +152,7 @@ AC: Credit must be displayed on the display screen.
   Then: a message of insufficient funds will be displayed
   And: remaining credit dispalyed
   
-Questions: Will enough change be returned to customer as possible?
+Questions:
 
 
 User stories
@@ -179,14 +179,22 @@ AC: The machine emails designated operative when:
 o A product reaches low stock.
 
   Given: product stock is set a X amount
-  When: the stock hits X
+  When: remaining stock hits X
   Then: a low stock notification will be sent
+  
+  Given: a low stock notification has been sent
+  When: the notification is received
+  Then: the correct stock information will be displayed
   
 o A product goes out of stock.
 
   Given: product stock is set a X amount
   When: the stock hits 0
   Then: a out of stock notification will be sent
+  
+  Given: a out of stock notification has been sent
+  When: the notification is received
+  Then: the correct stock information will be displayed
   
 o The machine temperature goes below or above pre-determined range.
 
@@ -196,6 +204,10 @@ o The machine temperature goes below or above pre-determined range.
   
   When: the temperture goes above X
   Then: a warniing notification will be sent
+  
+  Given: a warniing notification has been sent
+  When: the notification is received
+  Then: the correct temperture information will be displayed
 
 o The machine develops a fault.
   
@@ -203,4 +215,4 @@ o The machine develops a fault.
   When: a warniing notification is sent
   Then: the correct fault will be reported
 
-Questions: Can example faults be provided (error codes, notifications messages etc)?
+Questions: Can example faults be provided (error codes, notifications messages etc)? 
