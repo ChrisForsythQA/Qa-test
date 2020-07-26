@@ -71,11 +71,11 @@ AC: After a purchase, the customer’s remaining credit is displayed on the scre
 AC: Change is dispensed at the customer's request.
   
   Given: the correct amount of currency is remaining
-  When: the customer requested the remaining credit back
+  When: the customer requests the remaining credit back
   Then: the correct amount of remaining credit will be returned
   
   Given: there is no due currency remaining
-  When: the customer tried to request currency back 
+  When: the customer tries to request currency back 
   Then: no currency is returned
  
 Questions: 
@@ -84,16 +84,17 @@ Questions:
 User stories
 Scenario 3: Multiple vends
 Requirments: As a coin paying customer, I want to be able to pay for more than one product in a single transaction.
-AC: All British and Euro coins are accepted. 
+AC: To enable multi-product purchase, change is not dispensed immediately after the customer pays for the first product 
   
-  When: I put in british currency
-  Then: I am allowed to make a purchase from the machine
+  Given: there is X amount of currency
+  When: the customer purchases 1 item
+  And: there is sufficient remaining currency
+  Then: further purchases can be made
   
-  When: I put in euro coins
-  Then: I am allowed to make a purchase from the machine
-  
-  When: I put in currency that is not accepted
-  Then: the coins are returned to the user
+  Given: there is insufficient amount of currency remaining
+  When: the customer tries to purchase
+  Then: no purchase can be made
+  And: remaining currency returned at request
   
 Questions: 
 
@@ -103,8 +104,10 @@ Scenario 4: Contactless payment
 Requirments: As a customer, I want to be able to pay for products using contactless debit/credit card or Apple Pay.
 AC: The machine will debit the customer’s credit card/bank account with value of selected product.
   
-  When: I put in british currency
-  Then: I am allowed to make a purchase from the machine
+  Given: there is insufficient amount of currency remaining
+  When: the customer tries to purchase
+  Then: no purchase can be made
+  And: remaining currency returned at request
   
   When: I put in euro coins
   Then: I am allowed to make a purchase from the machine
