@@ -189,17 +189,14 @@ o The machine temperature goes below or above pre-determined range.
   Given: the vending machine is set a X tempature
   When: the temperture goes below X
   Then: a warniing notification will be sent
+  
+  When: the temperture goes above X
+  Then: a warniing notification will be sent
 
 o The machine develops a fault.
   
-  When: I put in british currency
-  Then: I am allowed to make a purchase from the machine
-  
-  When: I put in euro coins
-  Then: I am allowed to make a purchase from the machine
-  
-  When: I put in currency that is not accepted
-  Then: the coins are returned to the user
-  
-  
-Questions: 
+  Given: the vending machine develops a fault
+  When: a warniing notification is sent
+  Then: the correct fault will be reported
+
+Questions: Can example faults be provided (error codes, notifications messages etc)?
