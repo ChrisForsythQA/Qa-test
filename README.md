@@ -106,7 +106,7 @@ making a purchase.
   When: the customer tries to returned the credit
   Then: a message will be displayed of insufficient change to return
  
-Questions: 
+Questions: Will enough change be returned to customer as possible?
 
 
 User stories
@@ -114,10 +114,15 @@ Scenario 3: Multiple vends
 Requirments: As a coin paying customer, I want to be able to pay for more than one product in a single transaction.
 AC: To enable multi-product purchase, change is not dispensed immediately after the customer pays for the first product 
   
-  Given: there is X amount of currency
+  Given: there is sufficient amount of credit
   When: the customer purchases 1 item
-  And: there is sufficient remaining currency
-  Then: further purchases can be made
+  Then: the item will be dispatched
+  And: any remaining credit will not be returned
+  
+  Given: there is sufficient credit remaining
+  When: the customer purchases another item
+  Then: the item will be dispatched
+  And: any remaining credit will not be returned
   
   Given: there is insufficient amount of currency remaining
   When: the customer tries to purchase
