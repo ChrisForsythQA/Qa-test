@@ -30,7 +30,7 @@ AC: As coins are entered, the total credit value is uploaded on a display screen
   Then: a error message will be displayed
   And: the currency returned
   
-AC: Mixed currency is not accepted; the first coin of the second currency entered does not contribute to the credit value and is returned to the Customer (with explanation massage on the screen).
+AC: Mixed currency is not accepted; the first coin of the second currency entered does not contribute to the credit value and is returned to the Customer (with explanation message on the screen).
   
   Given: British currency is added first followed by Euro currnecy
   When: all the coins are registered
@@ -42,12 +42,12 @@ AC: Mixed currency is not accepted; the first coin of the second currency entere
   Then: the error message will be displayed
   And: the invalid coins returned
   
-  Given: British currency plus a invalid currency into the vending machine
+  Given: British currency plus a invalid currency added to the vending machine
   When: all the coins are registered
   Then: the error message will be displayed
   And: the invalid coins are returned
   
-  Given: Euro currency plus a invalid currency into the vending machine
+  Given: Euro currency plus a invalid currency added to the vending machine
   When: all the coins are registered
   Then: the error message will be displayed
   And: the invalid coins returned
@@ -76,6 +76,35 @@ AC: Change is dispensed at the customer's request.
   Given: there is no due currency remaining
   When: the customer tries to request currency back 
   Then: no currency is returned
+  
+AC: Change is returned in the smallest number of coins.
+
+  Given: there is 0.25 currency remaining
+  When: the customer requests remaining currency back 
+  Then: 0.20
+  And: 0.05 currency will be returned (2 coins)
+  
+  Given: there is 1.65 currency remaining
+  When: the customer requests remaining currency back 
+  Then: 1.00, 0.50, 0.10
+  And: 0.05 currency coins will be returned (4 coins)
+  
+AC: The customer is notified about how much change has been dispensed on the display screen.
+
+  Given: there is X credit remaining
+  When: the credit is returned to the customer
+  Then: the returning credit will be displayed correctly
+  
+AC: If the machine is unable to offer change, the customer must be notified of this via the display screen prior to
+making a purchase. 
+
+  Given: there is insufficient change in the vending machine
+  Then: a message will be displayed to the customer
+  
+  Given: the customer purchases a item/s
+  And: there is remaining credit
+  When: the customer tries to returned the credit
+  Then: a message will be displayed of insufficient change to return
  
 Questions: 
 
@@ -105,7 +134,12 @@ AC: Credit must be displayed on the display screen.
   When: the customer purchases another item
   Then: the correct amount of credit will be displayed
   
-Questions: 
+  Given: there is insufficient remaining credit
+  When: the customer tries to purchase another item
+  Then: a message of insufficient funds will be displayed
+  And: remaining credit dispalyed
+  
+Questions: Will enough change be returned to customer as possible?
 
 
 User stories
@@ -113,10 +147,14 @@ Scenario 4: Contactless payment
 Requirments: As a customer, I want to be able to pay for products using contactless debit/credit card or Apple Pay.
 AC: The machine will debit the customer’s credit card/bank account with value of selected product.
   
-  Given: 
-  When: the customer tries to purchase
-  Then: no purchase can be made
-  And: remaining currency returned at request
+  Given: a valid contactless payment has been scanned
+  When: the customer selects an item
+  Then: the item will be dispatched to the customer
+  
+  Given: a valid contactless payment has been scanned
+  When: the customer selects an item
+  And: there is insufficient funds
+  Then: a error message will be displayed
   
   When: I put in euro coins
   Then: I am allowed to make a purchase from the machine
@@ -124,7 +162,7 @@ AC: The machine will debit the customer’s credit card/bank account with value 
   When: I put in currency that is not accepted
   Then: the coins are returned to the user
 
-Questions: Can customer add multiple items before purchase or have to purchase individually? Does the card/apple pay need to be scanned before or after selecting item/s?
+Questions: Can customer add multiple items before purchase or have to purchase individually? Does the card/apple pay need to be scanned before or after selecting item/s? Will there be a message for insufficient funds?
 
 
 User stories
