@@ -64,7 +64,6 @@ AC: After a purchase, the customer’s remaining credit is displayed on the scre
   When: all items purchased add to less than X.XX
   Then: the correct amount of remaining currency will be displayed
   
-  Given: X.XX has been put into the vending machine
   When: all items add to the value £X.XX
   Then: the correct amount of zero remaining currency will be displayed
   
@@ -96,6 +95,16 @@ AC: To enable multi-product purchase, change is not dispensed immediately after 
   Then: no purchase can be made
   And: remaining currency returned at request
   
+AC: Credit must be displayed on the display screen.
+
+  Given: there is X amount of currency
+  When: the customer purchases 1 item
+  Then: the correct amount of credit will be displayed
+  
+  Given: there is sufficient remaining credit
+  When: the customer purchases another item
+  Then: the correct amount of credit will be displayed
+  
 Questions: 
 
 
@@ -104,7 +113,7 @@ Scenario 4: Contactless payment
 Requirments: As a customer, I want to be able to pay for products using contactless debit/credit card or Apple Pay.
 AC: The machine will debit the customer’s credit card/bank account with value of selected product.
   
-  Given: there is insufficient amount of currency remaining
+  Given: 
   When: the customer tries to purchase
   Then: no purchase can be made
   And: remaining currency returned at request
@@ -115,7 +124,7 @@ AC: The machine will debit the customer’s credit card/bank account with value 
   When: I put in currency that is not accepted
   Then: the coins are returned to the user
 
-Questions: 
+Questions: Can customer add multiple items before purchase or have to purchase individually? Does the card/apple pay need to be scanned before or after selecting item/s?
 
 
 User stories
