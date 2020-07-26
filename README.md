@@ -3,24 +3,27 @@ Scenario 1: Multi-currency support
 Requirments: Aa a customer, I want to be able to pay for products using either British or Euro coins
 AC: All British and Euro coins are accepted. 
   
-  When: I put in british currency
-  Then: I am allowed to make a purchase from the machine
+  Given: British currency are added
+  When: all the coins are registered
+  Then: the customer is allowed to make a purchase from the machine
   
-  When: I put in euro coins
-  Then: I am allowed to make a purchase from the machine
+  Given: British currency are added
+  When: all the coins are registered
+  Then: the customer is allowed to make a purchase from the machine
   
-  When: I put in currency that is not accepted
+  Given: Non British or Euro currencty has been added
+  When: all the coins are registered
   Then: the coins are returned to the user
   
   AC: As coins are entered, the total credit value is uploaded on a display screen.
   
-  Given: I have put 50p, 20p, 5p into the vending machine
+  Given: 50p, 20p, 5p are added to the vending machine
   When: all the coins are registered
-  Then: I will see the correct total of 0.75 displayed
+  Then: the correct total of 0.75p displayed
   
-  Given: I have put 50c, 20c, 10c, 5c into the vending machine
+  Given: 50c, 20c, 10c, 5c are added to the vending machine
   When: all the coins are registered
-  Then: I will see the correct total of 0.85 displayed
+  Then: the correct total of 0.85c is displayed
   
   Given: invalid currency is added to vending machine
   When: all the coins are registered
@@ -32,22 +35,22 @@ credit value and is returned to the Customer (with explanation massage on the sc
   
   Given: British currency is added first followed by Euro currnecy
   When: all the coins are registered
-  Then: I will see a error message displayed
+  Then: the error message will be displayed
   And: the Euro currnecy is returned
   
   Given: I have put 50c plus 20p into the vending
   When: all the coins are registered
-  Then: I will see a error message displayed
+  Then: the error message will be displayed
   And: the invalid coins returned
   
   Given: British currency plus a invalid currency into the vending machine
   When: all the coins are registered
-  Then: I will see a error message displayed
-  And: the invalid coins returned
+  Then: the error message will be displayed
+  And: the invalid coins are returned
   
   Given: Euro currency plus a invalid currency into the vending machine
   When: all the coins are registered
-  Then: I will see a error message displayed
+  Then: the error message will be displayed
   And: the invalid coins returned
   
 Questions: 
