@@ -101,6 +101,10 @@ making a purchase.
   Given: there is insufficient change in the vending machine
   Then: a message will be displayed to the customer
   
+  Given: the customer adds credit to the vending machine
+  When: the customer has made no purchase/or not selected an item
+  Then: a message will be displayed of insufficient change to return
+  
   Given: the customer purchases a item/s
   And: there is remaining credit
   When: the customer tries to returned the credit
