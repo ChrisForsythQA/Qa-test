@@ -11,11 +11,11 @@ AC: All British and Euro coins are accepted.
   When: all the coins are registered
   Then: the customer is allowed to make a purchase from the machine
   
-  Given: Non British or Euro currencty has been added
+  Given: Non British or Euro currency has been added
   When: all the coins are registered
   Then: the coins are returned to the user
   
-  AC: As coins are entered, the total credit value is uploaded on a display screen.
+AC: As coins are entered, the total credit value is uploaded on a display screen.
   
   Given: 50p, 20p, 5p are added to the vending machine
   When: all the coins are registered
@@ -30,8 +30,7 @@ AC: All British and Euro coins are accepted.
   Then: a error message will be displayed
   And: the currency returned
   
-  AC: Mixed currency is not accepted; the first coin of the second currency entered does not contribute to the
-credit value and is returned to the Customer (with explanation massage on the screen).
+AC: Mixed currency is not accepted; the first coin of the second currency entered does not contribute to the credit value and is returned to the Customer (with explanation massage on the screen).
   
   Given: British currency is added first followed by Euro currnecy
   When: all the coins are registered
@@ -59,7 +58,7 @@ Questions:
 User stories
 Scenario 2: Dispensing change
 Requirments: As a coin paying customer, after paying for all my items, I want to be able to receive change.
-  AC: After a purchase, the customer’s remaining credit is displayed on the screen. 
+AC: After a purchase, the customer’s remaining credit is displayed on the screen. 
   
   Given: X.XX has been put into the vending machine
   When: all items purchased add to less than X.XX
@@ -69,7 +68,7 @@ Requirments: As a coin paying customer, after paying for all my items, I want to
   When: all items add to the value £X.XX
   Then: the correct amount of zero remaining currency will be displayed
   
-  AC: Change is dispensed at the customer's request.
+AC: Change is dispensed at the customer's request.
   
   Given: the correct amount of currency is remaining
   When: the customer requested the remaining credit back
