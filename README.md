@@ -131,6 +131,10 @@ AC: To enable multi-product purchase, change is not dispensed immediately after 
   
 AC: Credit must be displayed on the display screen.
 
+  Given: there is X amount of currency added
+  When: all coins have been registered
+  Then: the correct amount of credit will be displayed
+  
   Given: there is X amount of currency
   When: the customer purchases 1 item
   Then: the correct amount of credit will be displayed
@@ -160,12 +164,6 @@ AC: The machine will debit the customer’s credit card/bank account with value 
   When: the customer selects an item
   And: there is insufficient funds
   Then: a error message will be displayed
-  
-  When: I put in euro coins
-  Then: I am allowed to make a purchase from the machine
-  
-  When: I put in currency that is not accepted
-  Then: the coins are returned to the user
 
 Questions: Can customer add multiple items before purchase or have to purchase individually? Does the card/apple pay need to be scanned before or after selecting item/s? Will there be a message for insufficient funds?
 
@@ -175,8 +173,23 @@ Scenario 5: Monitoring & alerting
 Requirments: As a Service Operator, I want the machine to notify me of significant/error events
 AC: The machine emails designated operative when:
 o A product reaches low stock.
+
+  Given: product stock is set a X amount
+  When: the stock hits X
+  Then: a low stock notification will be sent
+  
 o A product goes out of stock.
+
+  Given: product stock is set a X amount
+  When: the stock hits 0
+  Then: a out of stock notification will be sent
+  
 o The machine temperature goes below or above pre-determined range.
+
+  Given: the vending machine is set a X tempature
+  When: the temperture goes below X
+  Then: a warniing notification will be sent
+
 o The machine develops a fault.
   
   When: I put in british currency
